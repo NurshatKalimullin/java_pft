@@ -5,6 +5,7 @@ public class Square {
 
     //контсруктор
     public Square(double l){
+
         this.l = l;
     }
 
