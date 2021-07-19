@@ -1,10 +1,11 @@
-package ru.stqa.pft.addressbook;
+package ru.stqa.pft.addressbook.tests;
 
 import java.util.concurrent.TimeUnit;
 
 import org.testng.annotations.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import ru.stqa.pft.addressbook.model.ContactData;
 
 public class ContactCreationTests {
     private WebDriver wd;
@@ -33,10 +34,10 @@ public class ContactCreationTests {
         fillContactForm(new ContactData("Baggins", "Burglar", "The Shire, The Hill, Bag End", "+27796743437", "Bilbo", "BilboAdventurer@shire.com"));
         submitComtactCreation();
         returnToHomePage();
-        logout();
+        logOut();
     }
 
-    private void logout() {
+    private void logOut() {
         wd.findElement(By.linkText("Logout")).click();
     }
 
