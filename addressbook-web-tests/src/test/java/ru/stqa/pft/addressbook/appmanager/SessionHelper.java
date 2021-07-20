@@ -18,6 +18,6 @@ public class SessionHelper extends HelperBase {
     }
 
     public void logOut() {
-        click(By.linkText("Logout"));
+        click(By.xpath("//a[contains(text(),'Logout')]"));
     }
 }
