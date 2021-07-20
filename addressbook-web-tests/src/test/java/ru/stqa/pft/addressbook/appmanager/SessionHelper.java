@@ -18,6 +18,6 @@ public class SessionHelper extends HelperBase {
     }
 
     public void logOut() {
-        wd.findElement(By.linkText("Logout")).click();
+        click(By.linkText("Logout"));
     }
 }
