@@ -28,6 +28,10 @@ public class HelperBase {
         }
     }
 
+    /** isAlertPresent()
+     * Позволяет проверить наличие диалогового окна в приложении
+     * И перехватить исключение, если окна нет
+     */
     public boolean isAlertPresent() {
         try {
             wd.switchTo().alert();
