@@ -44,7 +44,7 @@ public class ContactHelper extends HelperBase {
     }
 
     public void returnToHomePage() {
-        click(By.linkText("home"));
+        click(By.xpath("//a[contains(text(),'home')]"));
     }
 
     public void initContactModification() {
@@ -55,4 +55,14 @@ public class ContactHelper extends HelperBase {
         click(By.name("update"));
     }
 
+    public void createContact(ContactData group, boolean creation){
+        initContactCreation();
+        fillContactForm(group, creation);
+        submitContactCreation();
+        returnToHomePage();
+    }
+
+    public boolean isThereAContact() {
+        return isElementPresent(By.name("selected[]"));
+    };
 }

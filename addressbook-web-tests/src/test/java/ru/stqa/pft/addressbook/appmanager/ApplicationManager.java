@@ -30,8 +30,8 @@ public class ApplicationManager {
         } else if (browser.equals(BrowserType.IE)) {
             wd = new InternetExplorerDriver();
         }
-        //if element is not presented test will wait 0 seconds for element to load
-        wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+        //if element is not presented test will wait 1 seconds for element to load
+        wd.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
         groupHelper = new GroupHelper(wd);
         navigationHelper = new NavigationHelper(wd);
         sessionHelper = new SessionHelper(wd);
