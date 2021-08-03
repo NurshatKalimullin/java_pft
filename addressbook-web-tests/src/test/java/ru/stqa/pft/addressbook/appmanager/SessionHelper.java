@@ -15,7 +15,7 @@ public class SessionHelper extends HelperBase {
         wd.get("http://localhost/addressbook/");
         type(By.name("user"), username );
         type(By.name("pass"), password);
-        /**
+        /** Other selector codes
          * click(By.cssSelector("input[type=\"submit\"]"));
          * click(By.xpath("//form[@id='LoginForm']/input[3]"));
         */

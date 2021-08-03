@@ -27,7 +27,7 @@ public class GroupCreationTests extends TestBase {
     */
     //following line works as previous for to find maximum
 
-    // following code counts max identifier, but we no longer need it
+    // following code in comment counts max identifier, but we no longer need it
     // int max = after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId();
     before.add(group);
     Comparator<? super GroupData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
