@@ -15,12 +15,12 @@ public class GroupDeletionTests extends TestBase {
             app.getGroupHelper().createGroup(new GroupData("test1", null, null));
         }
         List<GroupData> before = app.getGroupHelper().getGroupList();
-        app.getGroupHelper().selectGroup(before.size() - 1);
+        app.getGroupHelper().selectGroup(before.size() - 1); //choose last group to delete
         app.getGroupHelper().deleteSelectedGroup();
         app.getGroupHelper().returnToGroupPage();
         List<GroupData> after = app.getGroupHelper().getGroupList();
         Assert.assertEquals(after.size(), before.size() - 1);
-        before.remove(before.size() - 1);//now after equals to before
+        before.remove(before.size() - 1);//now group list containment after deletion is equal to before
 
         //following construction is able to compare insides of List
         Assert.assertEquals(before, after);

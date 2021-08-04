@@ -25,11 +25,11 @@ public class GroupCreationTests extends TestBase {
     *  }
     * }
     */
-    //following line works as previous for to find maximum
-
+    //following line works as previous 'for code' to find maximum
     // following code in comment counts max identifier, but we no longer need it
     // int max = after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId();
-    before.add(group);
+
+    before.add(group); //add newly created group to list of groups we had before modification
     Comparator<? super GroupData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
     before.sort(byId);
     after.sort(byId);

@@ -24,11 +24,15 @@ public class GroupModificationTests extends TestBase {
         app.getGroupHelper().submitGroupModification();
         app.getGroupHelper().returnToGroupPage();
         List<GroupData> after = app.getGroupHelper().getGroupList();
-        Assert.assertEquals(after.size(), before.size());
 
-        before.remove(before.size() - 1);
-        before.add(group);
+        //compare number of groups
+        Assert.assertEquals(after.size(), before.size());//we expect that after modification there will be equal number of contacts as before
 
+
+        //compare insides of groups
+        before.remove(before.size() - 1);//we have modified last group so we need to remove it from list of contacts that we had before modification
+        before.add(group);//and add group that we got after modification
+        //Comparator declares rules to compare
         Comparator<? super GroupData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
         before.sort(byId);
         after.sort(byId);
