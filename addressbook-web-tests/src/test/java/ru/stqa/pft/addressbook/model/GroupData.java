@@ -3,30 +3,11 @@ package ru.stqa.pft.addressbook.model;
 import java.util.Objects;
 
 public class GroupData {
-    private static int id;
-    private final String name;
-    private final String header;
-    private final String footer;
+    private static int id = Integer.MAX_VALUE;;
+    private String name;
+    private String header;
+    private String footer;
 
-
-    /* this constructor works as next one, because id here is null. And when code will appeal to GroupData()
-    * without id it will use this one GroupData
-    * here id is not read from web interface, but created as null with code
-     */
-    public GroupData(String name, String header, String footer) {
-        this.id = Integer.MAX_VALUE; // id for new group always will be equal to max value in code
-        this.name = name;
-        this.header = header;
-        this.footer = footer;
-    }
-
-
-    public GroupData(int id, String name, String header, String footer) {
-        this.id = id;
-        this.name = name;
-        this.header = header;
-        this.footer = footer;
-    }
 
     public int getId() {
         return id;
@@ -44,8 +25,24 @@ public class GroupData {
         return footer;
     }
 
-    public void setId(int id) {
+    public GroupData withId(int id) {
         this.id = id;
+        return this;
+    }
+
+    public GroupData withName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public GroupData withHeader(String header) {
+        this.header = header;
+        return this;
+    }
+
+    public GroupData withFooter(String footer) {
+        this.footer = footer;
+        return this;
     }
 
     @Override
