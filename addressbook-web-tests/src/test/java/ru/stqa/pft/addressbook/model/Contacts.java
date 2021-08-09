@@ -13,6 +13,7 @@ public class Contacts extends ForwardingSet<ContactData> {
         this.delegate = new HashSet<ContactData>(contacts.delegate);
     }
 
+    //constructor without parameters
     public Contacts() {
         this.delegate = new HashSet<ContactData>();
     }
@@ -24,7 +25,7 @@ public class Contacts extends ForwardingSet<ContactData> {
 
     public Contacts withAdded(ContactData contact) {
         Contacts contacts = new Contacts(this);
-        contacts.add(contact);
+        contacts.add(contact); //it's a copy
         return contacts;
     }
 
