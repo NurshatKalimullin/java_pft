@@ -68,6 +68,12 @@ public class GroupHelper extends HelperBase {
         returnToGroupPage();
     }
 
+    public void delete(GroupData group) {
+        selectGroupById(group.getId()); //choose last group to delete
+        deleteSelectedGroup();
+        returnToGroupPage();
+    }
+
     //множество
     public Groups all() {
         Groups groups = new Groups();
@@ -80,9 +86,5 @@ public class GroupHelper extends HelperBase {
         return groups;
     }
 
-    public void delete(GroupData group) {
-        selectGroupById(group.getId()); //choose last group to delete
-        deleteSelectedGroup();
-        returnToGroupPage();
-    }
+
 }
