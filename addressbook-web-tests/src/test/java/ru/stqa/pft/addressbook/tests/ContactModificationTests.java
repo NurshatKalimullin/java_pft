@@ -9,28 +9,25 @@ import java.util.List;
 
 public class ContactModificationTests extends TestBase {
 
-    @Test()
-    public void testContactModification () {
+    private void ensurePreconditions() {
         app.goTo().goToHomePage();
         if (! app.getContactHelper().isThereAContact()) {
-            app.getContactHelper().createContact(new ContactData(
-                    "Baggins",
-                    "Burglar",
-                    "The Shire, The Hill, Bag End",
-                    "+27796743437",
-                    "Bilbo",
-                    "BilboAdventurer@shire.com",
-                    "test1"), true);
+            app.getContactHelper().createContact(new ContactData().withLastName("Baggins").
+                    withNickname("Burglar").withHomeAddress("The Shire, The Hill, Bag End").
+                    withHomePhone("+27796743437").withFirstName("Bilbo").
+                    withEmail("BilboAdventurer@shire.com").withGroup("test1"), true);
         }
+    }
+
+    @Test()
+    public void testContactModification () {
+        ensurePreconditions();
         List<ContactData> before = app.getContactHelper().getContactList();
         app.getContactHelper().initContactModification(before.size() - 1);
-        ContactData contact =  new ContactData(
-                "Baggins",
-                "Burglar",
-                "The Shire, The Hill, Bag End",
-                "+27796743437",
-                "Bilbo",
-                "BilboAdventurer@shire.com", null);
+        ContactData contact =  new ContactData().withLastName("Baggins").
+                withNickname("Burglar").withHomeAddress("The Shire, The Hill, Bag End").
+                withHomePhone("+27796743437").withFirstName("Bilbo").
+                withEmail("BilboAdventurer@shire.com").withGroup(null);
         app.getContactHelper().fillContactForm(contact, false);
         app.getContactHelper().submitContactModification();
         app.getContactHelper().returnToHomePage();

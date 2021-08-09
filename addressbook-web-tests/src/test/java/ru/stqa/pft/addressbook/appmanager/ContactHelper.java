@@ -80,9 +80,9 @@ public class ContactHelper extends HelperBase {
             String firstName = element.findElement(By.cssSelector("td:nth-child(3)")).getText();
             String homeAddress = element.findElement(By.cssSelector("td:nth-child(4)")).getText();
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
-            ContactData contact = new ContactData(id, lastName, null, homeAddress, null, firstName, null, null);
-            contacts.add(contact);
-            System.out.println(contact);
+            contacts.add(new ContactData().withId(id).withLastName(lastName).withNickname(null)
+                    .withHomeAddress(homeAddress).withHomePhone(null).withFirstName(firstName).
+                    withEmail(null).withGroup(null));
         }
         return contacts;
     }
