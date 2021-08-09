@@ -12,8 +12,10 @@ import java.util.List;
 
 public class ContactHelper extends HelperBase {
 
-    public ContactHelper(WebDriver wd) {
-        super(wd);
+    ApplicationManager app;
+    public ContactHelper(ApplicationManager app) {
+        super(app.wd);
+        this.app = app;
     }
 
     public void submitContactCreation() {
@@ -87,5 +89,17 @@ public class ContactHelper extends HelperBase {
         return contacts;
     }
 
+    public void delete(List<ContactData> before) {
+        selectContact(before.size() - 1);
+        deleteContact();
+        app.goTo().acceptChanges();
+        returnToHomePage();
+    }
 
+    public void modify(List<ContactData> before, ContactData contact) {
+        initContactModification(before.size() - 1);
+        fillContactForm(contact, false);
+        submitContactModification();
+        returnToHomePage();
+    }
 }

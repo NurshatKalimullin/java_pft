@@ -35,7 +35,7 @@ public class ApplicationManager {
         groupHelper = new GroupHelper(wd);
         navigationHelper = new NavigationHelper(wd);
         sessionHelper = new SessionHelper(wd);
-        contactHelper = new ContactHelper(wd);
+        contactHelper = new ContactHelper(this);
         sessionHelper.login("admin", "secret");
     }
 
@@ -53,7 +53,9 @@ public class ApplicationManager {
         return navigationHelper;
     }
 
-    public ContactHelper getContactHelper() { return contactHelper; }
+    public ContactHelper contact() {
+        return contactHelper;
+    }
 
     public SessionHelper getSessionHelper() { return sessionHelper; }
 
