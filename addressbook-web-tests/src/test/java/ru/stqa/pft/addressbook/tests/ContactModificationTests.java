@@ -1,10 +1,11 @@
 package ru.stqa.pft.addressbook.tests;
 
-import org.hamcrest.CoreMatchers;
-import org.hamcrest.MatcherAssert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactModificationTests extends TestBase {
 
@@ -31,13 +32,9 @@ public class ContactModificationTests extends TestBase {
         Contacts after = app.contact().all();
 
         //compare number of Contacts
-        MatcherAssert.assertThat(after.size(), CoreMatchers.equalTo(before.size()));
+        assertThat(after.size(), equalTo(before.size()));
 
         //compare insides of Contacts
-        before.remove(modifiedContact);
-        before.add(contact);
-        MatcherAssert.assertThat(after, CoreMatchers.equalTo(before));
+        assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
     }
-
-
 }
