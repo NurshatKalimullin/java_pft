@@ -10,16 +10,19 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class ContactDeletionTests extends TestBase {
 
     private void ensurePreconditions() {
-        app.goTo().HomePage();
+        app.goTo().homePage();
         if (app.contact().all().size() == 0) {
-            app.contact().createContact(new ContactData().withLastName("Baggins").
-                    withNickname("Burglar").withHomeAddress("The Shire, The Hill, Bag End").
-                    withHomePhone("+27796743437").withFirstName("Bilbo").
-                    withEmail("BilboAdventurer@shire.com").withGroup("test1"), true);
+            app.contact().createContact(new ContactData().withLastName("Baggins").withFirstName("Bilbo")
+                    .withNickname("Burglar").withCompanyType("LLC").withCompanyName("The Fellowship of the Ring")
+                    .withHomeAddress("The Shire, The Hill, Bag End").withHomePhone("+(277)290981265")
+                    .withMobilePhone("+7 962 534 45 12").withWorkPhone("+8-812-264-54-77")
+                    .withEmail("Bilbo-Adventurer@shire.com").withEmail2("The.Ring.Holder@shire.com")
+                    .withEmail3("Oldes_Hobbit@shire.com").withGroup("test1")
+                    , true);
         }
     }
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void testContactDeletion () {
         ensurePreconditions();
         Contacts before = app.contact().all();

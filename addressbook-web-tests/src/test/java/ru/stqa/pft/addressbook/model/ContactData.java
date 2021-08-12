@@ -6,10 +6,17 @@ public class ContactData {
     private int id = Integer.MAX_VALUE;;
     private String lastName;
     private String nickname;
+    private String companyType;
+    private String companyName;
     private String homeAddress;
     private String homePhone;
     private String firstName;
     private String email;
+    private String email2;
+    private String email3;
+    private String mobilePhone;
+    private String workPhone;
+    private String allPhones;
     private String group;
 
 
@@ -22,6 +29,14 @@ public class ContactData {
 
     public String getNickname() { return nickname; }
 
+    public String getCompanyType() {
+        return companyType;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
     public String getHomeAddress() { return homeAddress; }
 
     public String getHomePhone() { return homePhone; }
@@ -30,7 +45,20 @@ public class ContactData {
 
     public String getEmail() { return email; }
 
+    public String getEmail2() { return email2; }
+
+    public String getEmail3() { return email3; }
+
     public String getGroup() { return  group; }
+
+    public String getMobilePhone() { return  mobilePhone; }
+
+    public String getWorkPhone() { return  workPhone; }
+
+    public String getAllPhones() {
+        return allPhones;
+    }
+
 
     public ContactData withId(int id) {
         this.id = id;
@@ -44,6 +72,16 @@ public class ContactData {
 
     public ContactData withNickname(String nickname) {
         this.nickname = nickname;
+        return this;
+    }
+
+    public ContactData withCompanyType(String companyType) {
+        this.companyType = companyType;
+        return this;
+    }
+
+    public ContactData withCompanyName(String companyName) {
+        this.companyName = companyName;
         return this;
     }
 
@@ -67,10 +105,37 @@ public class ContactData {
         return this;
     }
 
+    public ContactData withEmail2(String email2) {
+        this.email2 = email2;
+        return this;
+    }
+
+    public ContactData withEmail3(String email3) {
+        this.email3 = email3;
+        return this;
+    }
+
     public ContactData withGroup(String group) {
         this.group = group;
         return this;
     }
+
+    public ContactData withMobilePhone(String mobilePhone) {
+        this.mobilePhone = mobilePhone;
+        return this;
+    }
+
+    public ContactData withWorkPhone(String workPhone) {
+        this.workPhone = workPhone;
+        return this;
+    }
+
+    public ContactData withAllPhones(String allPhones) {
+        this.allPhones = allPhones;
+        return this;
+    }
+
+
 
     @Override
     public String toString() {
@@ -93,4 +158,7 @@ public class ContactData {
     public int hashCode() {
         return Objects.hash(id, lastName, homeAddress, firstName);
     }
+
+
+
 }
