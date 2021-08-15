@@ -12,12 +12,12 @@ public class ContactModificationTests extends TestBase {
     private void ensurePreconditions() {
         app.goTo().homePage();
         if (app.contact().all().size() == 0) {
-            app.contact().createContact(new ContactData().withFirstName("Bilbo").withLastName("Baggins")
+            app.contact().createContact(new ContactData().withFirstName("Frodo").withLastName("Baggins")
                     .withNickname("Burglar").withCompanyType("LLC").withCompanyName("The Fellowship of the Ring")
-                    .withHomeAddress("The Shire, The Hill, Bag End").withHomePhone("+(277)290981265")
+                    .withHomeAddress("The Shire, The Hill, Bag End #1").withHomePhone("+(277)290981265")
                     .withMobilePhone("+7 962 534 45 12").withWorkPhone("8-812-264-54-77")
                     .withEmail("Bilbo-Adventurer@shire.com").withEmail2("The.Ring.Holder@shire.com")
-                    .withEmail3("Oldes-Hobbit@shire.com").withGroup("test1"), true);
+                    .withEmail3("Oldest-Hobbit@shire.com").withGroup("test1"), true);
         }
     }
 
@@ -27,11 +27,11 @@ public class ContactModificationTests extends TestBase {
         Contacts before = app.contact().all();
         ContactData modifiedContact = before.iterator().next();
         ContactData contact =  new ContactData().withId(modifiedContact.getId()).withLastName("Baggins")
-                .withFirstName("Bilbo").withNickname("Burglar").withCompanyType("LLC")
-                .withCompanyName("The Fellowship of the Ring").withHomeAddress("The Shire, The Hill, Bag End")
+                .withFirstName("Frodo").withNickname("Burglar").withCompanyType("LLC")
+                .withCompanyName("The Fellowship of the Ring").withHomeAddress("The Shire, The Hill, Bag End #1")
                 .withHomePhone("+(277)793478654").withMobilePhone("+7 962 123 09 11")
                 .withWorkPhone("8-812-755-34-76").withEmail("Bilbo-Adventurer@shire.com")
-                .withEmail2("The.Ring.Holder@shire.com").withEmail3("Oldes_Hobbit@shire.com").withGroup(null);
+                .withEmail2("The.Ring.Holder@shire.com").withEmail3("Oldest_Hobbit@shire.com").withGroup(null);
         app.contact().modify(contact);
         Contacts after = app.contact().all();
 

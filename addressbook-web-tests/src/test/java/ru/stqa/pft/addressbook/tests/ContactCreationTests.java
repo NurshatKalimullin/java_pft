@@ -15,10 +15,10 @@ public class ContactCreationTests extends TestBase {
         Contacts before = app.contact().all();
         ContactData contact = new ContactData().withLastName("Baggins")
                 .withNickname("Burglar").withCompanyType("LLC").withCompanyName("The Fellowship of the Ring")
-                .withHomeAddress("The Shire, The Hill, Bag End").withHomePhone("+(277)290981265")
-                .withMobilePhone("+7 962 534 45 12").withWorkPhone("+8-812-264-54-77").withFirstName("Bilbo")
+                .withHomeAddress("The Shire, The Hill, Bag End #1").withHomePhone("+(277)290981265")
+                .withMobilePhone("+7 962 534 45 12").withWorkPhone("+8-812-264-54-77").withFirstName("Frodo")
                 .withEmail("Bilbo-Adventurer@shire.com").withEmail2("The.Ring.Holder@shire.com")
-                .withEmail3("Oldes_Hobbit@shire.com").withGroup("test1");
+                .withEmail3("Oldest_Hobbit@shire.com").withGroup("test1");
         app.contact().createContact(contact, true);
         Contacts after = app.contact().all();
 
