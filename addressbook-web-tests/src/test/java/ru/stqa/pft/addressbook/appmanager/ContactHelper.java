@@ -24,6 +24,7 @@ public class ContactHelper extends HelperBase {
     public void fillContactForm(ContactData contactData, boolean creation) {
         type(By.name("firstname"), contactData.getFirstName());
         type(By.name("lastname"), contactData.getLastName());
+        attache(By.name("photo"), contactData.getPhoto());
         type(By.name("nickname"), contactData.getNickname());
         type(By.name("company"), contactData.getCompanyType());
         type(By.name("title"), contactData.getCompanyName());
@@ -34,7 +35,6 @@ public class ContactHelper extends HelperBase {
         type(By.name("email"), contactData.getEmail());
         type(By.name("email2"), contactData.getEmail2());
         type(By.name("email3"), contactData.getEmail3());
-
 
         if (creation) {
             new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
