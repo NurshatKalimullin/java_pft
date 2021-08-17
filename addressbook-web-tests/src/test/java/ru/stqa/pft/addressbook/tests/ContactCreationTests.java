@@ -1,27 +1,55 @@
 package ru.stqa.pft.addressbook.tests;
 
+import com.google.gson.*;
+import org.openqa.selenium.json.TypeToken;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.Iterator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 public class ContactCreationTests extends TestBase {
 
-    @Test(enabled = true)
-    public void testCreateContact() throws Exception {
+
+    @DataProvider
+    public Iterator<Object[]> validContactFromJson() throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.json")));
+        String json = "";
+        String line = reader.readLine();
+        while (line != null) {
+            json += line;
+            line = reader.readLine();
+        }
+        //deserialize to read property file path
+        Gson gson = new GsonBuilder().registerTypeAdapter(File.class, new DateTimeDeserializer()).create();
+        List<ContactData> contacts = gson.fromJson(json, new TypeToken<List<ContactData>>() {
+        }
+                .getType());
+        return contacts.stream().map((g) -> new Object[]{g}).collect(Collectors.toList()).iterator();
+    }
+
+    private static class DateTimeDeserializer implements JsonDeserializer<File> {
+        public File deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+                throws JsonParseException {
+            return new File(json.getAsJsonPrimitive().getAsString());
+        }
+    }
+
+    @Test(dataProvider = "validContactFromJson")
+    public void testCreateContact(ContactData contact) {
         app.goTo().homePage();
         Contacts before = app.contact().all();
-        File photo = new File("src/test/resources/icon.png");
-        ContactData contact = new ContactData().withLastName("Baggins")
-                .withNickname("Burglar").withCompanyType("LLC").withCompanyName("The Fellowship of the Ring")
-                .withHomeAddress("The Shire, The Hill, Bag End #1").withHomePhone("+(277)290981265")
-                .withMobilePhone("+7 962 534 45 12").withWorkPhone("+8-812-264-54-77").withFirstName("Frodo")
-                .withEmail("Bilbo-Adventurer@shire.com").withEmail2("The.Ring.Holder@shire.com")
-                .withEmail3("Oldest_Hobbit@shire.com").withGroup("test1").withPhoto(photo);
         app.contact().createContact(contact, true);
         Contacts after = app.contact().all();
 
@@ -36,7 +64,7 @@ public class ContactCreationTests extends TestBase {
 
     @Test(enabled = false)
     public void testCurrentDir() {
-        File currentDir = new File (".");
+        File currentDir = new File(".");
         System.out.println(currentDir.getAbsolutePath());
         File photo = new File("src/test/resources/icon.png");
         System.out.println(photo.getAbsolutePath());

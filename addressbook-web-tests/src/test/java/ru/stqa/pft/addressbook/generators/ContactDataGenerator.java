@@ -54,6 +54,7 @@ public class ContactDataGenerator {
     }
 
     private void saveAsJson(List<ContactData> contacts, File file) throws IOException {
+        //serialize to write property path
         Gson gson = new GsonBuilder().setPrettyPrinting()
                 .registerTypeAdapter(File.class, new FileSerializer())
                 .excludeFieldsWithoutExposeAnnotation()
@@ -101,10 +102,11 @@ public class ContactDataGenerator {
                     .withCompanyName(String.format("The Fellowship of the Ring #%s", i))
                     .withHomeAddress(String.format("The Shire, The Hill, Bag End #%s", i))
                     .withHomePhone(String.format("+(277)29098126%s", i))
+                    .withMobilePhone(String.format("+7 962 123 09 1%s", i))
+                    .withWorkPhone(String.format("+8-812-264-54-7%s", i))
                     .withEmail(String.format("Bilbo-Adventurer%s@shire.com", i))
                     .withEmail2(String.format("The.Ring.Holder%s@shire.com", i))
                     .withEmail3(String.format("Oldest_Hobbit%s@shire.com", i))
-                    .withWorkPhone(String.format("+8-812-264-54-7%s", i))
                     .withGroup("test 1").withPhoto(photo));
         }
         return contacts;
