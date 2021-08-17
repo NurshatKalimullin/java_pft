@@ -1,0 +1,32 @@
+<list>
+  <contact>
+    <lastName>Baggins 0</lastName>
+    <nickname>Burglar 0</nickname>
+    <companyType>LLC</companyType>
+    <companyName>The Fellowship of the Ring #0</companyName>
+    <homeAddress>The Shire, The Hill, Bag End #0</homeAddress>
+    <homePhone>+(277)290981260</homePhone>
+    <firstName>Frodo 0</firstName>
+    <email>Bilbo-Adventurer0@shire.com</email>
+    <email2>The.Ring.Holder0@shire.com</email2>
+    <email3>Oldest_Hobbit0@shire.com</email3>
+    <workPhone>+8-812-264-54-70</workPhone>
+    <group>test 1</group>
+    <photo>src\test\resources\icon.png</photo>
+  </contact>
+  <contact>
+    <lastName>Baggins 1</lastName>
+    <nickname>Burglar 1</nickname>
+    <companyType>LLC</companyType>
+    <companyName>The Fellowship of the Ring #1</companyName>
+    <homeAddress>The Shire, The Hill, Bag End #1</homeAddress>
+    <homePhone>+(277)290981261</homePhone>
+    <firstName>Frodo 1</firstName>
+    <email>Bilbo-Adventurer1@shire.com</email>
+    <email2>The.Ring.Holder1@shire.com</email2>
+    <email3>Oldest_Hobbit1@shire.com</email3>
+    <workPhone>+8-812-264-54-71</workPhone>
+    <group>test 1</group>
+    <photo>src\test\resources\icon.png</photo>
+  </contact>
+</list>

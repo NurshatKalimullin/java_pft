@@ -1,0 +1,32 @@
+[
+  {
+    "lastName": "Baggins 0",
+    "nickname": "Burglar 0",
+    "companyType": "LLC",
+    "companyName": "The Fellowship of the Ring #0",
+    "homeAddress": "The Shire, The Hill, Bag End #0",
+    "homePhone": "+(277)290981260",
+    "firstName": "Frodo 0",
+    "email": "Bilbo-Adventurer0@shire.com",
+    "email2": "The.Ring.Holder0@shire.com",
+    "email3": "Oldest_Hobbit0@shire.com",
+    "workPhone": "+8-812-264-54-70",
+    "group": "test 1",
+    "photo": "src\\test\\resources\\icon.png"
+  },
+  {
+    "lastName": "Baggins 1",
+    "nickname": "Burglar 1",
+    "companyType": "LLC",
+    "companyName": "The Fellowship of the Ring #1",
+    "homeAddress": "The Shire, The Hill, Bag End #1",
+    "homePhone": "+(277)290981261",
+    "firstName": "Frodo 1",
+    "email": "Bilbo-Adventurer1@shire.com",
+    "email2": "The.Ring.Holder1@shire.com",
+    "email3": "Oldest_Hobbit1@shire.com",
+    "workPhone": "+8-812-264-54-71",
+    "group": "test 1",
+    "photo": "src\\test\\resources\\icon.png"
+  }
+]
