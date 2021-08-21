@@ -72,9 +72,11 @@ public class ContactCreationTests extends TestBase {
     @Test(dataProvider = "validContactFromJson")
     public void testCreateContact(ContactData contact) {
         app.goTo().homePage();
-        Contacts before = app.contact().all();
+        Contacts before = app.db().contacts(); //from database
+        //Contacts before = app.contact().all(); //from web interface
         app.contact().createContact(contact, true);
-        Contacts after = app.contact().all();
+        Contacts after = app.db().contacts(); //from database
+        //Contacts after = app.contact().all(); //from web interface
 
         //compare number of Contacts
         assertThat(after.size(), equalTo(before.size() + 1));
