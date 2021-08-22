@@ -33,7 +33,7 @@ public class GroupModificationTests extends TestBase {
         //Groups before = app.group().all(); //from web interface
         GroupData modifiedGroup = before.iterator().next();
         GroupData group = new GroupData().withId(modifiedGroup.getId()).
-                withName("test1").withHeader("test2").withFooter("test3");
+                withName("test 1").withHeader("test 2").withFooter("test 3");
         app.group().modify(group);
 
         //compare number of groups
@@ -43,7 +43,11 @@ public class GroupModificationTests extends TestBase {
 
         //compare insides of groups
         assertThat(after, equalTo(before.without(modifiedGroup).withAdded(group)));
+
+        //compare
+        verifyGroupListInUI();
+
     }
-
-
 }
+
+
