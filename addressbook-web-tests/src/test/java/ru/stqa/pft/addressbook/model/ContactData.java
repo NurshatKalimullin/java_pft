@@ -7,89 +7,92 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.File;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
-@XStreamAlias("contact")
+@XStreamAlias("contact") // указываем, что в xml будет использоваться тег contact
 @Entity
 @Table(name = "addressbook")
 public class ContactData {
 
-    @XStreamOmitField
+    @XStreamOmitField //это означает, что поле не будет записано в xml
     @Id
     @Column(name = "id")
     private int id = Integer.MAX_VALUE;;
 
-    @Expose
+    @Expose //Expose даст знать, что боле обязательно в json файле
     @Column(name = "lastname")
     private String lastName;
 
-    @Expose
+    @Expose //Expose даст знать, что боле обязательно в json файле
     @Column(name = "nickname")
     private String nickname;
 
-    @Expose
+    @Expose //Expose даст знать, что боле обязательно в json файле
     @Column(name = "company")
     private String companyType;
 
-    @Expose
+    @Expose //Expose даст знать, что боле обязательно в json файле
     @Column(name = "title")
     private String companyName;
 
-    @Expose
+    @Expose //Expose даст знать, что боле обязательно в json файле
     @Column(name = "address")
     @Type(type = "text")
     private String homeAddress;
 
-    @Expose
+    @Expose //Expose даст знать, что боле обязательно в json файле
     @Column(name = "home")
     @Type(type = "text")
     private String homePhone;
 
-    @Expose
+    @Expose //Expose даст знать, что боле обязательно в json файле
     @Column(name = "firstname")
     private String firstName;
 
-    @Expose
+    @Expose //Expose даст знать, что боле обязательно в json файле
     @Column(name = "email")
     @Type(type = "text")
     private String email;
 
-    @Expose
+    @Expose //Expose даст знать, что боле обязательно в json файле
     @Column(name = "email2")
     @Type(type = "text")
     private String email2;
 
-    @Expose
+    @Expose //Expose даст знать, что боле обязательно в json файле
     @Column(name = "email3")
     @Type(type = "text")
     private String email3;
 
-    @Expose
-    @Transient
+    @Expose //Expose даст знать, что боле обязательно в json файле
+    @Transient //аннотация используется, если поле не нужно из базы извлекать для HBConnectionTest
     private String allEmails;
 
-    @Expose
+    @Expose //Expose даст знать, что боле обязательно в json файле
     @Column(name = "mobile")
     @Type(type = "text")
     private String mobilePhone;
 
-    @Expose
+    @Expose //Expose даст знать, что боле обязательно в json файле
     @Column(name = "work")
     @Type(type = "text")
     private String workPhone;
 
-    @Expose
-    @Transient
+    @Expose //Expose даст знать, что боле обязательно в json файле
+    @Transient //аннотация используется, если поле не нужно из базы извлекать для HBConnectionTest
     private String allPhones;
 
-    @Expose
-    @Transient
-    private String group;
-
-    @Expose
+    @Expose //Expose даст знать, что боле обязательно в json файле
     @Column(name = "photo")
     @Type(type = "text")
     private String photo;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "address_in_groups", joinColumns = @JoinColumn(name = "id")
+            , inverseJoinColumns = @JoinColumn(name = "group_id"))
+    private Set<GroupData> groups = new HashSet<GroupData>();
 
 
 
@@ -117,8 +120,6 @@ public class ContactData {
 
     public String getEmail3() { return email3; }
 
-    public String getGroup() { return  group; }
-
     public String getMobilePhone() { return  mobilePhone; }
 
     public String getWorkPhone() { return  workPhone; }
@@ -129,6 +130,7 @@ public class ContactData {
 
     public File getPhoto() { return new File(photo); }
 
+    public Groups getGroups() { return new Groups(groups); }
 
 
     public ContactData withId(int id) {
@@ -186,11 +188,6 @@ public class ContactData {
         return this;
     }
 
-    public ContactData withGroup(String group) {
-        this.group = group;
-        return this;
-    }
-
     public ContactData withMobilePhone(String mobilePhone) {
         this.mobilePhone = mobilePhone;
         return this;
@@ -216,6 +213,7 @@ public class ContactData {
         return this;
     }
 
+
     @Override
     public String toString() {
         return "ContactData{" +
@@ -236,5 +234,10 @@ public class ContactData {
     @Override
     public int hashCode() {
         return Objects.hash(id, lastName, nickname, companyType, companyName, homeAddress, homePhone, firstName, email, email2, email3, mobilePhone, workPhone);
+    }
+
+    public ContactData inGroup(GroupData group) {
+        groups.add(group);
+        return this;
     }
 }

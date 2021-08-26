@@ -20,8 +20,8 @@ public class ContactDeletionTests extends TestBase {
                     .withHomeAddress("The Shire, The Hill, Bag End #1").withHomePhone("+(277)290981265")
                     .withMobilePhone("+7 962 534 45 12").withWorkPhone("+8-812-264-54-77")
                     .withEmail("Bilbo-Adventurer@shire.com").withEmail2("The.Ring.Holder@shire.com")
-                    .withEmail3("Oldest_Hobbit@shire.com").withGroup("test 1").withPhoto(photo)
-                    , true);
+                    .withEmail3("Oldest_Hobbit@shire.com").withPhoto(photo)
+                    , true); //.withGroup("test 1")
         }
     }
 

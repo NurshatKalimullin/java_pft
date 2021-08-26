@@ -12,8 +12,8 @@
     <email3>Oldest_Hobbit0@shire.com</email3>
     <mobilePhone>+7 962 123 09 10</mobilePhone>
     <workPhone>+8-812-264-54-70</workPhone>
-    <group>test 1</group>
     <photo>src\test\resources\icon.png</photo>
+    <groups/>
   </contact>
   <contact>
     <lastName>Baggins 1</lastName>
@@ -28,7 +28,7 @@
     <email3>Oldest_Hobbit1@shire.com</email3>
     <mobilePhone>+7 962 123 09 11</mobilePhone>
     <workPhone>+8-812-264-54-71</workPhone>
-    <group>test 1</group>
     <photo>src\test\resources\icon.png</photo>
+    <groups/>
   </contact>
 </list>
