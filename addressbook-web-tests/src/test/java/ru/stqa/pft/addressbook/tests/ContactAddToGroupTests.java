@@ -13,7 +13,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 
-public class ContactAndGroupRelationTests extends TestBase {
+public class ContactAddToGroupTests extends TestBase {
 
     public void ensureGroupExistence(){
         app.goTo().groupPage();

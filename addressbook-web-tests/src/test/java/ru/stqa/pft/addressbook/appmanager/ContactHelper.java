@@ -151,4 +151,11 @@ public class ContactHelper extends HelperBase {
         click(By.name("add"));
         click(By.xpath(String.format("//a[contains(text(),'group page \"%s\"')]", groupName)));
     }
+
+    public void dropContactFromGroup(ContactData contact, String groupName) {
+        click(By.xpath(String.format("//select[@name='group']/option[.='%s']", groupName)));
+        selectContactById(contact.getId());
+        click(By.name("remove"));
+        click(By.xpath(String.format("//a[contains(text(),'group page \"%s\"')]", groupName)));
+    }
 }

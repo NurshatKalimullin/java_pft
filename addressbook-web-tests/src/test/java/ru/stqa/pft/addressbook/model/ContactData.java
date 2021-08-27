@@ -90,7 +90,7 @@ public class ContactData {
     @Type(type = "text")
     private String photo;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER) //FetchType.EAGER позволяет извлекать максимум информации за заход
     @JoinTable(name = "address_in_groups", joinColumns = @JoinColumn(name = "id")
             , inverseJoinColumns = @JoinColumn(name = "group_id"))
     private Set<GroupData> groups = new HashSet<GroupData>();
