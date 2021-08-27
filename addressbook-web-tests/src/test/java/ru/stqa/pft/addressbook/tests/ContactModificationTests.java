@@ -16,12 +16,14 @@ public class ContactModificationTests extends TestBase {
         app.goTo().homePage();
         if (app.db().contacts().size() == 0) {
             File photo = new File("src/test/resources/icon.png");
-            app.contact().createContact(new ContactData().withFirstName("Frodo").withLastName("Baggins")
+            Groups groups = app.db().groups();
+            ContactData newContact = new ContactData().withFirstName("Frodo").withLastName("Baggins")
                     .withNickname("Burglar").withCompanyType("LLC").withCompanyName("The Fellowship of the Ring")
                     .withHomeAddress("The Shire, The Hill, Bag End #1").withHomePhone("+(277)290981265")
                     .withMobilePhone("+7 962 534 45 12").withWorkPhone("8-812-264-54-77")
                     .withEmail("Bilbo-Adventurer@shire.com").withEmail2("The.Ring.Holder@shire.com")
-                    .withEmail3("Oldest-Hobbit@shire.com").withPhoto(photo), true); //.withGroup("test 1")
+                    .withEmail3("Oldest-Hobbit@shire.com").withPhoto(photo).inGroup(groups.iterator().next());
+            app.contact().createContact(newContact, true);
         }
 
         //following code works with web interface
@@ -45,14 +47,14 @@ public class ContactModificationTests extends TestBase {
         //Contacts before = app.contact().all(); //from web interface
         ContactData modifiedContact = before.iterator().next();
         File photo = new File("src/test/resources/icon.png");
-        /*ContactData contact =  new ContactData().withId(modifiedContact.getId()).withLastName("Baggins")
+        ContactData contact =  new ContactData().withId(modifiedContact.getId()).withLastName("Baggins")
                 .withFirstName("Frodo").withNickname("Burglar").withCompanyType("LLC")
                 .withCompanyName("The Fellowship of the Ring").withHomeAddress("The Shire, The Hill, Bag End #1")
                 .withHomePhone("+(277)793478654").withMobilePhone("+7 962 123 09 11")
                 .withWorkPhone("8-812-755-34-76").withEmail("Bilbo-Adventurer@shire.com")
-                .withEmail2("The.Ring.Holder@shire.com").withEmail3("Oldest_Hobbit@shire.com").withGroup(null)
+                .withEmail2("The.Ring.Holder@shire.com").withEmail3("Oldest_Hobbit@shire.com")
                 .withPhoto(photo);
-        app.contact().modify(contact);*/
+        app.contact().modify(contact);
         Contacts after = app.db().contacts(); //from database
         //Contacts after = app.contact().all(); //from web interface
 
@@ -62,4 +64,6 @@ public class ContactModificationTests extends TestBase {
         //compare insides of Contacts
         //assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
     }
+
+
 }

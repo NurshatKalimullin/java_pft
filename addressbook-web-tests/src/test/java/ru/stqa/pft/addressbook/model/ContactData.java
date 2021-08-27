@@ -7,6 +7,7 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.File;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -93,7 +94,6 @@ public class ContactData {
     @JoinTable(name = "address_in_groups", joinColumns = @JoinColumn(name = "id")
             , inverseJoinColumns = @JoinColumn(name = "group_id"))
     private Set<GroupData> groups = new HashSet<GroupData>();
-
 
 
     public int getId() {
@@ -218,8 +218,18 @@ public class ContactData {
     public String toString() {
         return "ContactData{" +
                 "lastName='" + lastName + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", companyType='" + companyType + '\'' +
+                ", companyName='" + companyName + '\'' +
                 ", homeAddress='" + homeAddress + '\'' +
+                ", homePhone='" + homePhone + '\'' +
                 ", firstName='" + firstName + '\'' +
+                ", email='" + email + '\'' +
+                ", email2='" + email2 + '\'' +
+                ", email3='" + email3 + '\'' +
+                ", mobilePhone='" + mobilePhone + '\'' +
+                ", workPhone='" + workPhone + '\'' +
+                ", groups=" + groups +
                 '}';
     }
 
@@ -240,4 +250,5 @@ public class ContactData {
         groups.add(group);
         return this;
     }
+
 }
