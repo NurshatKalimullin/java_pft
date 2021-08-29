@@ -16,12 +16,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HttpSession {
-    private CloseableHttpClient httpClient;
+    private CloseableHttpClient httpclient;
     private ApplicationManager app;
 
     public HttpSession(ApplicationManager app){
         this.app = app;
-        httpClient= HttpClients.custom().setRedirectStrategy(new LaxRedirectStrategy()).build();
+        httpclient = HttpClients.custom().setRedirectStrategy(new LaxRedirectStrategy()).build();
     }
 
     public boolean login (String username,String password) throws IOException {
@@ -32,7 +32,7 @@ public class HttpSession {
         params.add(new BasicNameValuePair("secure_session","on"));
         params.add(new BasicNameValuePair("return","index.php"));
         post.setEntity(new UrlEncodedFormEntity(params));
-        CloseableHttpResponse response = httpClient.execute(post);
+        CloseableHttpResponse response = httpclient.execute(post);
         String body = getTextFrom (response);
         return body.contains(String.format("<span class=\"user-info\">%s</span>", username));
     }
@@ -45,7 +45,7 @@ public class HttpSession {
 
     public boolean isLoggedInAs(String username) throws IOException {
         HttpGet get = new HttpGet(app.getProperty("web.baseUrl") + "/account_page.php");
-        CloseableHttpResponse response = httpClient.execute(get);
+        CloseableHttpResponse response = httpclient.execute(get);
         String body = getTextFrom(response);
         return body.contains(String.format("<span class=\"user-info\">%s</span>", username));
     }
