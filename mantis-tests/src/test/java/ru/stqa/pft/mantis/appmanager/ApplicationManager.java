@@ -20,6 +20,7 @@ public class ApplicationManager {
     WebDriver wd;
 
 
+    //initialization happens only once
     public ApplicationManager(String browser) {
 
         this.browser = browser;
@@ -47,4 +48,23 @@ public class ApplicationManager {
         wd.quit();
     }
 
+    //initialization happens every time
+    public HttpSession newSession() {
+        return new HttpSession(this);
+    }
+
+    public String getProperty(String key) {
+        return properties.getProperty(key);
+    }
 }
+
+
+
+
+
+
+
+
+
+
+

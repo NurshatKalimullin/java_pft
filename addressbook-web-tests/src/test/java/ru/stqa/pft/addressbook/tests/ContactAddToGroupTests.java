@@ -60,14 +60,14 @@ public class ContactAddToGroupTests extends TestBase {
                 app.contact().createContact(modifiedContact.withId((contactsFromDB.stream().mapToInt(g -> g.getId()).max().getAsInt()) + 1), true);
             }
         }
-        Groups before = modifiedContact.getGroups(); //определили во сколько групп входит контакт
-        Groups groups = app.db().groups(); //вытащили все группы
-        GroupData group = groups.iterator().next(); // вытащили группу
-        Integer groupId = group.getId(); //вытащили id этой группы
+        Groups before = modifiedContact.getGroups();
+        Groups groups = app.db().groups();
+        GroupData group = groups.iterator().next();
+        Integer groupId = group.getId();
         String groupName = group.getName();
         app.goTo().homePage();
-        app.contact().addContactToGroup(modifiedContact, groupId, groupName); // добавили контакт в выбранную группу
-        Groups after = app.db().getContactsFromDB(modifiedContact.getId()).getGroups(); //определяем в какие группы входит контак после модификации
+        app.contact().addContactToGroup(modifiedContact, groupId, groupName);
+        Groups after = app.db().getContactsFromDB(modifiedContact.getId()).getGroups();
         System.out.println(after);
         assertThat(after, equalTo(before.withAdded(group)));
     }
