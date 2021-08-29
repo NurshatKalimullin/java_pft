@@ -61,10 +61,8 @@ public class ContactAddToGroupTests extends TestBase {
             }
         }
         Groups before = modifiedContact.getGroups(); //определили во сколько групп входит контакт
-        System.out.println(before);
         Groups groups = app.db().groups(); //вытащили все группы
         GroupData group = groups.iterator().next(); // вытащили группу
-        System.out.println(group);
         Integer groupId = group.getId(); //вытащили id этой группы
         String groupName = group.getName();
         app.goTo().homePage();

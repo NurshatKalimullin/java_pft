@@ -48,16 +48,22 @@ public class ContactDeleteFromGroupTests extends TestBase {
                 modifiedGroup = group;
                 modifiedGroupId = group.getId();
                 modifiedContact = group.getContacts().iterator().next();
-                before = group.getContacts();
                 break;
             }
             else if (group == max) {
-                System.out.println("ТЫ НЕ ДОДЕЛАЛ ТЕСТ!!!!");
+                Contacts contactsFromDB = app.db().contacts();
+                modifiedContact = contactsFromDB.iterator().next();
+                modifiedGroup = group;
+                modifiedGroupId = group.getId();
+                String groupName = group.getName();
+                app.goTo().homePage();
+                app.contact().addContactToGroup(modifiedContact, modifiedGroupId, groupName);
             }
         }
+        before = modifiedGroup.getContacts();
         String groupName = modifiedGroup.getName();
         app.goTo().homePage();
-        app.contact().dropContactFromGroup(modifiedContact, groupName);
+        app.contact().dropContactFromGroup(modifiedContact, groupName, modifiedGroupId);
         Groups newGroups = app.db().groups();
         for (GroupData newGroup : newGroups) {
             if (newGroup.getId() == modifiedGroupId) {
@@ -65,7 +71,6 @@ public class ContactDeleteFromGroupTests extends TestBase {
                 assertThat(after, equalTo(before.without(modifiedContact)));
             }
         }
-
     }
 
 }
