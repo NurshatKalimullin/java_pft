@@ -95,7 +95,6 @@ public class ContactData {
             , inverseJoinColumns = @JoinColumn(name = "group_id"))
     private Set<GroupData> groups = new HashSet<GroupData>();
 
-
     public int getId() {
         return id;
     }

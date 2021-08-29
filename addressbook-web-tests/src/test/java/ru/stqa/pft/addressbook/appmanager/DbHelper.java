@@ -43,12 +43,11 @@ public class DbHelper {
         return new Contacts(result);
     }
 
-    public ContactData getContactsFromDB(ContactData contact) {
+    public ContactData getContactsFromDB(int id) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        List<ContactData> result = session.createQuery( "from ContactData where deprecated = '0000-00-00'" ).list();
-        session.getTransaction().commit();
+        ContactData single = (ContactData) session.createQuery(String.format("from ContactData where id = %s", id)).uniqueResult();        session.getTransaction().commit();
         session.close();
-        return new ContactData();
+        return single;
     }
 }

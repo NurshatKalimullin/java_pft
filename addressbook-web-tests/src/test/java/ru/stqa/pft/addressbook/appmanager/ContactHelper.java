@@ -144,10 +144,10 @@ public class ContactHelper extends HelperBase {
                 .withWorkPhone(work).withEmail(email).withEmail2(email2).withEmail3(email3);
     }
 
-    public void addContactToGroup(ContactData contact, String groupName) {
+    public void addContactToGroup(ContactData contact, Integer groupId, String groupName) {
         click(By.xpath(String.format("//select[@name='group']/option[@value='[none]']")));
         selectContactById(contact.getId());
-        click(By.xpath(String.format("//select[@name='to_group']/option[.='%s']", groupName)));
+        click(By.xpath(String.format("//select[@name='to_group']/option[@value='%s']", groupId)));
         click(By.name("add"));
         click(By.xpath(String.format("//a[contains(text(),'group page \"%s\"')]", groupName)));
     }
