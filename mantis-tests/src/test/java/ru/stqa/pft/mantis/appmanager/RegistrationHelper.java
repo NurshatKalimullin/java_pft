@@ -16,7 +16,7 @@ public class RegistrationHelper extends HelperBase {
         wd.get(app.getProperty("web.baseUrl") + "/signup_page.php");
         type(By.name("username"), username);
         type(By.name("email"), email);
-        click(By.cssSelector("input[value='Зарегистрироваться']"));
+        click(By.cssSelector("input[class='width-40 pull-right btn btn-success btn-inverse bigger-110']"));
 
     }
 
@@ -24,7 +24,7 @@ public class RegistrationHelper extends HelperBase {
         wd.get(confirmarionLink);
         type(By.name("password"), password);
         type(By.name("password_confirm"), password);
-        click(By.cssSelector("input[value='Update User']"));
+        click(By.cssSelector("button[class='width-100 width-40 pull-right btn btn-success btn-inverse bigger-110']"));
     }
 }
 
