@@ -16,8 +16,6 @@ import java.math.BigInteger;
 import java.net.MalformedURLException;
 import java.rmi.RemoteException;
 
-import static ru.stqa.pft.mantis.appmanager.SoapHelper.getMantisConnect;
-
 public class TestBase {
 
     Logger logger = LoggerFactory.getLogger(TestBase.class);

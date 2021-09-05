@@ -1,5 +1,7 @@
 package ru.stqa.pft.mantis.tests;
 
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.lanwen.verbalregex.VerbalExpression;
 import ru.stqa.pft.mantis.model.MailMessage;
@@ -9,43 +11,43 @@ import ru.stqa.pft.mantis.model.Users;
 import javax.mail.MessagingException;
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import static org.testng.Assert.assertTrue;
+
 public class PasswordChangeTests extends TestBase{
 
+    @BeforeMethod
     public void startMailServer(){
         app.mail().start();
     }
 
-
     @Test
     public void testPasswordChange() throws MessagingException, IOException {
-        app.registration().login("administrator", "root");
-        Users list = app.db().users();
-        UserData selectedUser = list.iterator().next();
-        System.out.println(selectedUser);
-        Integer userId = selectedUser.getId();
-        if (selectedUser.getUserName().equals("administrator")) {
-            //list.remove();
-            Set<UserData> userDataHashSet = new HashSet<UserData>();
-            userDataHashSet.add(selectedUser);
-            System.out.println(userDataHashSet);
-            selectedUser = list.iterator().next().withId(userId + 1);
+        Users users = app.db().users();
+        UserData selectedUser = users.iterator().next();
+        Iterator<UserData> iteratedUsers = users.iterator();
+        //I seriously did not find another way to skip administrator is being selected
+        while (selectedUser.getUserName().equals("administrator")) {
+            selectedUser = iteratedUsers.next();
         }
         String userName = selectedUser.getUserName();
-        String password = selectedUser.getPassword();
+        String newPassword = selectedUser.getPassword() + "1";
         String email = selectedUser.getEmail();
+        app.registration().login("administrator", "root");
         app.registration().resetPassword(userName);
         List<MailMessage> mailMessages = app.mail().waitForMail(2, 10000);
-        String passwordResetLink = findConfirmarionLink(mailMessages, email);
-        app.registration().finish(passwordResetLink, password);
+        String passwordResetLink = app.registration().findConfirmarionLink(mailMessages, email);
+        //app.registration().finish(passwordResetLink, newPassword);
+        app.registration().setNewPassword(passwordResetLink, userName, newPassword);
+        assertTrue(app.newSession().login(userName, newPassword));
     }
 
-    private String findConfirmarionLink(List<MailMessage> mailMessages, String email) {
-        MailMessage mailMessage = mailMessages.stream().filter((m) -> m.to.equals(email)).findFirst().get();
-        VerbalExpression regex = VerbalExpression.regex().find("http://").nonSpace().oneOrMore().build();
-        return regex.getText(mailMessage.text);
+    @AfterMethod(alwaysRun = true)
+    public void stopMailServer(){
+        app.mail().stop();
     }
 
 }

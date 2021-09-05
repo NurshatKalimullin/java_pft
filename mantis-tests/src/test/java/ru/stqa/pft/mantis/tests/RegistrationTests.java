@@ -31,15 +31,9 @@ public class RegistrationTests extends TestBase {
         app.registration().start(user, email);
         //List<MailMessage> mailMessages = app.mail().waitForMail(2, 10000); //встроенный почтовый сервер
         List<MailMessage> mailMessages = app.james().waitForMail(user, password, 70000); //внешний почтовый сервер
-        String confirmarionLink = findConfirmarionLink(mailMessages, email);
+        String confirmarionLink = app.registration().findConfirmarionLink(mailMessages, email);
         app.registration().finish(confirmarionLink, password);
         assertTrue(app.newSession().login(user,password));
-    }
-
-    private String findConfirmarionLink(List<MailMessage> mailMessages, String email) {
-        MailMessage mailMessage = mailMessages.stream().filter((m) -> m.to.equals(email)).findFirst().get();
-        VerbalExpression regex = VerbalExpression.regex().find("http://").nonSpace().oneOrMore().build();
-        return regex.getText(mailMessage.text);
     }
 
     //@AfterMethod(alwaysRun = true)
