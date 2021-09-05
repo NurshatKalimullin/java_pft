@@ -15,7 +15,7 @@ import static org.testng.Assert.assertTrue;
 
 public class RegistrationTests extends TestBase {
 
-    //@BeforeMethod
+    //@BeforeMethod //используем только со встроенным сервером
     public void startMailServer(){
         app.mail().start();
     }
@@ -29,8 +29,8 @@ public class RegistrationTests extends TestBase {
         app.james().createUser(user, password);
         app.james().drainEmail(user, password);
         app.registration().start(user, email);
-        //List<MailMessage> mailMessages = app.mail().waitForMail(2, 10000);
-        List<MailMessage> mailMessages = app.james().waitForMail(user, password, 70000);
+        //List<MailMessage> mailMessages = app.mail().waitForMail(2, 10000); //встроенный почтовый сервер
+        List<MailMessage> mailMessages = app.james().waitForMail(user, password, 70000); //внешний почтовый сервер
         String confirmarionLink = findConfirmarionLink(mailMessages, email);
         app.registration().finish(confirmarionLink, password);
         assertTrue(app.newSession().login(user,password));
