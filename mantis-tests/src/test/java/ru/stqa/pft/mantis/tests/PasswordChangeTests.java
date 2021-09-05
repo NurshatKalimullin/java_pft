@@ -38,7 +38,7 @@ public class PasswordChangeTests extends TestBase{
         String email = selectedUser.getEmail();
         app.registration().login("administrator", "root");
         app.registration().resetPassword(userName);
-        List<MailMessage> mailMessages = app.mail().waitForMail(2, 10000);
+        List<MailMessage> mailMessages = app.mail().waitForMail(1, 10000);
         String passwordResetLink = app.registration().findConfirmarionLink(mailMessages, email);
         //app.registration().finish(passwordResetLink, newPassword);
         app.registration().setNewPassword(passwordResetLink, userName, newPassword);
