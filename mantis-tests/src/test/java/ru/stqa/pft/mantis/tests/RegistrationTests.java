@@ -15,7 +15,7 @@ import static org.testng.Assert.assertTrue;
 
 public class RegistrationTests extends TestBase {
 
-    //@BeforeMethod //используем только со встроенным сервером
+    //@BeforeMethod /*используем только со встроенным сервером*/
     public void startMailServer(){
         app.mail().start();
     }

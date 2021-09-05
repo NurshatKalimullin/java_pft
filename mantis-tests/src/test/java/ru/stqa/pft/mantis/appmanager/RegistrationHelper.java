@@ -40,8 +40,6 @@ public class RegistrationHelper extends HelperBase {
         click(By.xpath("//div[@id='main-container']/div[2]/div[2]/div/ul/li[2]/a"));
         click(By.xpath(String.format("//a[contains(text(),'%s')]", userName)));
         //click(By.xpath("//form[@id='manage-user-reset-form']/fieldset/span/input"));
-        //click(By.cssSelector("input[value='Сбросить пароль']"));
-        //click(By.xpath("//input[@value='Сбросить пароль']"));
         click(By.xpath("//fieldset/span/input"));
 
 
