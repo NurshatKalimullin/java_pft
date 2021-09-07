@@ -10,6 +10,7 @@ dependencies {
     implementation("com.thegoate:testng:0.15.8.202107032201")
     implementation("org.testng:testng:7.4.0")
     implementation 'org.apache.httpcomponents:fluent-hc:4.5.13'
+    implementation 'com.jayway.restassured:rest-assured:2.9.0'
 }
 
 test {
