@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 import java.util.Set;
 
-public class RestAssuredTests {
+public class RestAssuredTests extends TestBase {
 
     @BeforeClass
     public void init(){
@@ -30,7 +30,7 @@ public class RestAssuredTests {
     }
 
 
-    private Set<Issue> getIssues() throws IOException {
+    public Set<Issue> getIssues() throws IOException {
         String json = RestAssured.get("https://bugify.stqa.ru/api/issues.json").asString();
         JsonElement parsed = new JsonParser().parse(json);
         JsonElement issues = parsed.getAsJsonObject().get("issues");

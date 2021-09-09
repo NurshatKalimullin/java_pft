@@ -6,6 +6,7 @@ public class Issue {
     private String summary;
     private String description;
     private Project project;
+    private String stateName;
 
     public int getId() {
         return Id;
@@ -24,6 +25,7 @@ public class Issue {
         this.summary = summary;
         return this;
     }
+
 
     public String getDescription() {
         return description;
