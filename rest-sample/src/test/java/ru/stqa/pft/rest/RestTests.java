@@ -8,6 +8,7 @@ import org.apache.http.client.fluent.Executor;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.message.BasicNameValuePair;
 import org.testng.Assert;
+import org.testng.SkipException;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
@@ -18,17 +19,17 @@ public class RestTests extends TestBase{
     @Test
     public void testCreateIssue() throws IOException {
         Set<Issue> oldIssues = getIssues();
-        Integer badIssueId = 1;
-        //skipIfNotFixed(badIssueId);
-        Integer oldIssue = oldIssues.iterator().next().getId();
-        String status = oldIssues.iterator().next().getState_name();
-
-
-        Issue newIssue = new Issue().withSubject("Test issue").withDescription("New test issue");;
-        int issueId = createIssue(newIssue);
-        Set<Issue> newIssues = getIssues();
-        oldIssues.add(newIssue.withId(issueId));
-        Assert.assertEquals(newIssues,oldIssues);
+        try {
+            skipIfNotFixed(oldIssues, 1288);
+            Issue newIssue = new Issue().withSubject("Test issue").withDescription("New test issue");;
+            int issueId = createIssue(newIssue);
+            Set<Issue> newIssues = getIssues();
+            oldIssues.add(newIssue.withId(issueId));
+            Assert.assertEquals(newIssues,oldIssues);
+        } catch (
+        SkipException e) {
+            System.out.println(e);
+        }
     }
 
     public Executor getExecutor() {

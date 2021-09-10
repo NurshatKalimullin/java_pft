@@ -6,6 +6,7 @@ import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 import com.jayway.restassured.RestAssured;
 import org.testng.Assert;
+import org.testng.SkipException;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -22,11 +23,17 @@ public class RestAssuredTests extends TestBase {
     @Test
     public void testCreateIssue() throws IOException {
         Set<Issue> oldIssues = getIssues();
-        Issue newIssue = new Issue().withSubject("Test issue").withDescription("New test issue");;
-        int issueId = createIssue(newIssue);
-        Set<Issue> newIssues = getIssues();
-        oldIssues.add(newIssue.withId(issueId));
-        Assert.assertEquals(newIssues,oldIssues);
+        try {
+            skipIfNotFixed(oldIssues, 1288);
+            Issue newIssue = new Issue().withSubject("Test issue").withDescription("New test issue");;
+            int issueId = createIssue(newIssue);
+            Set<Issue> newIssues = getIssues();
+            oldIssues.add(newIssue.withId(issueId));
+            Assert.assertEquals(newIssues,oldIssues);
+        } catch (
+                SkipException e) {
+            System.out.println(e);
+        }
     }
 
 
