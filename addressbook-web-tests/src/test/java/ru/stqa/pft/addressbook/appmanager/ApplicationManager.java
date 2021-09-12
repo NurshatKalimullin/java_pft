@@ -53,7 +53,7 @@ public class ApplicationManager {
         } else {
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setBrowserName(browser);
-            //capabilities.setPlatform(Platform.fromString(System.getProperty("platform", "win10")));
+            //capabilities.setPlatform(Platform.fromString(System.getProperty("platform", "win10"))); //this line creates conflict in CI and must be commented
             wd = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
         }
 
