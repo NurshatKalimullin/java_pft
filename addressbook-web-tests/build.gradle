@@ -1,3 +1,4 @@
+
 apply plugin: 'java'
 
 
@@ -22,6 +23,9 @@ dependencies {
     implementation("org.hibernate:hibernate-core:5.5.5.Final")
     agent "org.aspectj:aspectjweaver:1.8.0"
     testImplementation "ru.yandex.qatools.allure:allure-testng-adaptor:1.4.0.RC4"
+    implementation 'org.robotframework:robotframework:4.1'
+    implementation 'io.cucumber:cucumber-java:6.11.0'
+    implementation 'io.cucumber:cucumber-testng:6.11.0'
 }
 
 task testGroups(type: Test) {
@@ -65,6 +69,12 @@ task testContacts(type: Test) {
     }
 }
 
+task rf(type: JavaExec) {
+    main = 'org.robotframework.RobotFramework'
+    classpath = sourceSets.test.runtimeClasspath
+    args '--outputdir', 'build/rf-report'
+    args 'src/test/resources/robotframework'
+}
 
 
 
